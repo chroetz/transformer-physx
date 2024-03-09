@@ -244,6 +244,7 @@ class LorenzEmbeddingTrainer(EmbeddingTrainingHead):
         for i in range(xInput.size(1)):
             xInput0 = xInput[:,i].to(device)
             g0 = self.embedding_model.embed(xInput0)
+            g0 = self.embedding_model.koopmanOperation(g0)
             yPred0 = self.embedding_model.recover(g0)
             yPred[:,i] = yPred0.squeeze().detach()
 
